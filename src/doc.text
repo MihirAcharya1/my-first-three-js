@@ -1,0 +1,23 @@
+Import three : * "import * as THREE from 'three';"
+Import orbitcontrolls : "import { OrbitControls } from 'three/addons/controls/OrbitControls.js';"
+
+// Create a gradient background
+const canvas = document.createElement('canvas');
+const context = canvas.getContext('2d');
+canvas.width = 2;
+canvas.height = 512;
+
+const gradient = context.createLinearGradient(0, 0, 0, 512);
+gradient.addColorStop(0, '#1e4877'); // Dark blue at top
+gradient.addColorStop(0.5, '#4584b4'); // Mid blue
+gradient.addColorStop(1, '#83b8d7'); // Light blue at bottom
+
+context.fillStyle = gradient;
+context.fillRect(0, 0, 2, 512);
+
+const texture = new THREE.CanvasTexture(canvas);
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.repeat.set(1024, 1);
+
+scene.background = texture;
